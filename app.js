@@ -1,6 +1,7 @@
-// 引入外部包体
+// 引入外部模块
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 // 引入本地文件
 const keys = require('./config/keys')
@@ -12,8 +13,10 @@ const port = keys.port
 
 const app = express()
 
+
+
 //连接数据库
-mongoose.connect(db)
+mongoose.connect(db,{useNewUrlParser: true})
   .then(() => {
     console.log('mongodb connected')
   })
@@ -21,9 +24,14 @@ mongoose.connect(db)
     throw new Error(err)
   })
 
+// 中间件
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 //配置路由
 app.use('/api/users', users)
+
 
 
 app.get('/', (req, res) => {

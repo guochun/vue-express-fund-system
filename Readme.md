@@ -14,4 +14,5 @@
 
 1: 初始化项目 安装express框架  
 2: 连接数据库 安装mongoose 连接 https://mlab.com mongo数据库  
-3: 设置路由接口 
+3: 配置用户数据模型 安装body-parser 中间件
+4: 配置用户注册路由 通过cryptjs 对用户密码进行加密 
