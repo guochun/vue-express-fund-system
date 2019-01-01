@@ -12,5 +12,6 @@
 
 ## 项目步骤
 
-1: 初始化项目 安装express框架
-2: 连接数据库 安装mongoose 连接 https://mlab.com mongo数据库。
+1: 初始化项目 安装express框架  
+2: 连接数据库 安装mongoose 连接 https://mlab.com mongo数据库  
+3: 设置路由接口 

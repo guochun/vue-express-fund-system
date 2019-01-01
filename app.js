@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 
 // 引入本地文件
 const keys = require('./config/keys')
+const users = require('./routes/api/users')
 
 //配置信息
 const db = keys.mongoUri
@@ -19,6 +20,10 @@ mongoose.connect(db)
   .catch((err) => {
     throw new Error(err)
   })
+
+
+//配置路由
+app.use('/api/users', users)
 
 
 app.get('/', (req, res) => {
