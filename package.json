@@ -1,0 +1,16 @@
+{
+  "name": "vue-express-fund-system",
+  "version": "1.0.0",
+  "description": "资金管理平台demo",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "purcy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
