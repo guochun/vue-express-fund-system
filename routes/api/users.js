@@ -2,6 +2,7 @@
 
 const express = require('express')
 const User = require('../../models/users')
+const gravatar = require('gravatar');
 const encrypt = require('../../util/crypt').encrypt
 const error = require('../../config/error')
 const router = express.Router()
@@ -29,7 +30,7 @@ router.post('/register', (req, res) => {
         name: data.name,
         email: data.email,
         passWord: data.passWord,
-        avatar: ''
+        avatar: gravatar.url(data.email, {s: '200', r: 'pg', d: 'mm'})
       })
       return encrypt(newUser.passWord)
     })
