@@ -18,7 +18,7 @@ const profileSchema = new Schema({
     type: String,
     required: true
   },
-  cache: {
+  cash: {
     type: String,
     required: true
   },

@@ -76,7 +76,7 @@ router.post('/register', (req, res) => {
         return Promise.reject({ code: 1002 })
       }
       newUser.password = hash
-      return newUser.save(newUser)
+      return newUser.save()
     })
     .then((user) => {
       res.json(user)

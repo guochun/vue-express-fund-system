@@ -7,7 +7,7 @@ const passport = require('passport')
 // 引入本地文件
 const keys = require('./config/keys')
 const users = require('./routes/api/users')
-const profile = require('./routes/api/profile')
+const profile = require('./routes/api/profiles')
 const passportProcessor = require('./util/passport')
 
 //配置信息
@@ -35,7 +35,7 @@ app.use(bodyParser.json())
 
 //配置路由
 app.use('/api/users', users)
-app.use('/api/profile', profile)
+app.use('/api/profiles', profile)
 
 passportProcessor(passport)
 
