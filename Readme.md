@@ -8,7 +8,8 @@
 - 其他: body-parser cryptjs gravatar jsonwebtoken passport passport-jwt
 
 ### 前端
-
+- 框架 Vue
+- UI框架 element
 
 
 ## 项目步骤
@@ -26,3 +27,4 @@
 11: 配置添加信息接口  
 12：配置获取全部信息 获取单个信息接口  
 13: 配置删除信息和编辑信息接口  
+14: 初始化前端项目 安装concurrently 实现前后端连载
