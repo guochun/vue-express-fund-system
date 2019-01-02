@@ -4,14 +4,33 @@ const express = require('express')
 const User = require('../../models/users')
 const gravatar = require('gravatar');
 const encrypt = require('../../util/crypt').encrypt
+const compare = require('../../util/crypt').compare
 const error = require('../../config/error')
 const router = express.Router()
 
 // routes /api/users/login
-// desc 返回用户请求的json数据
+// desc 返回token jwt passport
 // access public
-router.get('/login', (req, res) => {
-  res.json({ code: 0 })
+router.post('/login', (req, res) => {
+  const email = req.body.email
+  const password = req.body.password
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) return Promise.reject({ code: 2001 })
+      return compare(password, user.password)
+    })
+    .then((isMatch) => {
+      if (!isMatch) return Promise.reject({ code: 2002 })
+      res.json({ msg: "success" })
+    })
+    .catch((err) => {
+      if (err.code) {
+        const errInfo = error[err.code]
+        res.status(errInfo.status).json(errInfo)
+      }
+      console.log(err)
+    })
+
 })
 
 // routes /api/users/register
@@ -29,16 +48,16 @@ router.post('/register', (req, res) => {
       newUser = new User({
         name: data.name,
         email: data.email,
-        passWord: data.passWord,
-        avatar: gravatar.url(data.email, {s: '200', r: 'pg', d: 'mm'})
+        password: data.password,
+        avatar: gravatar.url(data.email, { s: '200', r: 'pg', d: 'mm' })
       })
-      return encrypt(newUser.passWord)
+      return encrypt(newUser.password)
     })
     .then((hash) => {
       if (!hash) {
         return Promise.reject({ code: 1002 })
       }
-      newUser.passWord = hash
+      newUser.password = hash
       return newUser.save(newUser)
     })
     .then((user) => {
@@ -46,7 +65,8 @@ router.post('/register', (req, res) => {
     })
     .catch((err) => {
       if (err.code) {
-        res.status(400).json(error[err.code])
+        const errInfo = error[err.code]
+        res.status(errInfo.status).json(errInfo)
       }
       console.log(err)
     })

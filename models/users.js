@@ -12,7 +12,7 @@ const userSchema = new Schema({
     type: String,
     require: true
   },
-  passWord: {
+  password: {
     type: String,
     require: true
   },
