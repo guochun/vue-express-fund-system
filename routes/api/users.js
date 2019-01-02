@@ -1,6 +1,8 @@
 // 用户路由接口 配置用户的登陆和注册
 
 const express = require('express')
+const passport = require('passport')
+
 const User = require('../../models/users')
 const gravatar = require('gravatar');
 const encrypt = require('../../util/crypt').encrypt
@@ -34,7 +36,7 @@ router.post('/login', (req, res) => {
     .then((token) => {
       res.json({
         sucess: true,
-        token: `${findUser.name}${token}`
+        token: 'Bearer ' + token
       })
     })
     .catch((err) => {
@@ -84,6 +86,13 @@ router.post('/register', (req, res) => {
       }
       console.log(err)
     })
+})
+
+// routes /api/users/current
+// desc 测试token验证
+// access private
+router.get('/current',passport.authenticate('jwt',{session: false}), (req, res) => {
+  res.json(req.user)
 })
 
 module.exports = router

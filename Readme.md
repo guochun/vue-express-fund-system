@@ -5,6 +5,7 @@
 ### 后端 
 - 框架: express
 - 数据库: mongodb mongoose 
+- 其他: body-parser cryptjs gravatar jsonwebtoken passport passport-jwt
 
 ### 前端
 
@@ -18,3 +19,6 @@
 4: 配置用户注册路由 通过cryptjs 对用户密码进行加密   
 5：使用gravatar 设置用户的头像信息  
 6: 配置用户的登陆接口 
+7: 安装jsonwebtoken配置用户请求成功token 
+8: 安装passport passport-jwt 添加用户token验证 
+
