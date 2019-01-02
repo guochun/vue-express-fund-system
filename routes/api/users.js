@@ -29,7 +29,8 @@ router.post('/login', (req, res) => {
       const rule = {
         id:  findUser.id,
         name: findUser.name,
-        email: findUser.email
+        email: findUser.email,
+        avatar: findUser.avatar
       }
       return sign(rule)
     })
@@ -65,7 +66,8 @@ router.post('/register', (req, res) => {
         name: data.name,
         email: data.email,
         password: data.password,
-        avatar: gravatar.url(data.email, { s: '200', r: 'pg', d: 'mm' })
+        avatar: gravatar.url(data.email, { s: '200', r: 'pg', d: 'mm' }),
+        identity: data.identity
       })
       return encrypt(newUser.password)
     })
@@ -92,7 +94,13 @@ router.post('/register', (req, res) => {
 // desc 测试token验证
 // access private
 router.get('/current',passport.authenticate('jwt',{session: false}), (req, res) => {
-  res.json(req.user)
+  res.json({
+    id: req.user.id,
+    name: req.user.name,
+    email: req.user.email,
+    avatar: req.user.avatar,
+    identity: req.user.identity
+  })
 })
 
 module.exports = router
