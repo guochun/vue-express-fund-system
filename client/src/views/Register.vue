@@ -18,7 +18,6 @@
               type="text"
               v-model="registerUser.name"
               placeholder="请输入用户名"
-              clearable
             >
             </el-input>
           </el-form-item>
@@ -28,27 +27,24 @@
               type="text"
               v-model="registerUser.email"
               placeholder="请输入邮箱"
-              clearable
             >
             </el-input>
           </el-form-item>
 
           <el-form-item label="密码" prop="password">
             <el-input
-              type="text"
+              type="password"
               v-model="registerUser.password"
               placeholder="请输入密码"
-              clearable
             >
             </el-input>
           </el-form-item>
 
           <el-form-item label="确认密码" prop="confirmPassword">
             <el-input
-              type="text"
+              type="password"
               v-model="registerUser.confirmPassword"
               placeholder="请确认密码"
-              clearable
             >
             </el-input>
           </el-form-item>
@@ -80,10 +76,21 @@
 </template>
 
 <script>
-// import { validateEmail, validatePassword } from "../util/validate.js";
+import {
+  validateUserName,
+  validateEmail,
+  validatePassword,
+} from "../util/validate.js";
 export default {
   name: 'Register',
   data() {
+    const  validateConfirmPass = (rule, value, callback) => {
+      if (value !== this.registerUser.password) {
+        callback(new Error('两次输入密码不一致!'));
+      } else {
+        callback();
+      }
+    };
     return {
       registerUser: {
         name: '',
@@ -92,7 +99,22 @@ export default {
         confirmPassword: '',
         identity: '',
       },
-      rules: {},
+      rules: {
+        name: validateUserName,
+        email: validateEmail,
+        password: validatePassword,
+        confirmPassword: [
+          {
+            required: true,
+            message: '确认密码不能为空',
+            trigger: 'blur',
+          },
+          {
+            validator: validateConfirmPass,
+            trigger: 'blur',
+          }
+        ]
+      },
       options: [
         {
           label: '管理员',
@@ -105,6 +127,21 @@ export default {
       ],
     };
   },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+  }
 };
 </script>
 
