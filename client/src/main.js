@@ -22,6 +22,7 @@ Vue.use(Input);
 Vue.use(Select);
 Vue.use(Option);
 Vue.use(Button);
+
 Vue.prototype.$http = http;
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false;

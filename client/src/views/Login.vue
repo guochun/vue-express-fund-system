@@ -9,7 +9,7 @@
                 <el-input v-model="loginUser.password" placeholder="请输入密码" type="password"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary"  @click="submitForm('loginForm')" class="submit-btn">登  录</el-button>
+                <el-button type="primary"   @click="submitForm('loginForm')" class="submit-btn">登  录</el-button>
             </el-form-item>
             <div class="tip-area">
                 <p>还没有账号？现在<router-link to='/register'>注册</router-link></p>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-//import jwt_decode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 import FormContainer from '../components/FormContainer'
 import { validateEmail, validatePassword } from '../util/validate.js';
 export default {
@@ -51,11 +51,11 @@ export default {
             localStorage.setItem("eleToken", token);
 
             // 解析token
-            //const decode = jwt_decode(token);
+            const decode = jwtDecode(token);
 
             // 存储数据
-            // this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decode));
-            // this.$store.dispatch("setUser", decode);
+            this.$store.dispatch("setAuthenticated", !this.isEmpty(decode));
+            this.$store.dispatch("setUser", decode);
 
             // 页面跳转
             this.$message.success('登陆成功');

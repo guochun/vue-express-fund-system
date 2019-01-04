@@ -36,6 +36,7 @@
 20: 编写用户登陆页面抽象出form-container组件
 21: 设置前端路由守卫对为获得token的跳转拦截  
 22: 处理过期的token  
-
+23: jwt-decode对token进行解析  
+24：vuex存储用户信息解决刷新页面vuex数据丢失问题 
 
 

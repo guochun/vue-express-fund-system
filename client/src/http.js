@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Message, Loading } from 'element-ui';
+import router from './router';
 
 let loadingInstance = null;
 
@@ -41,6 +42,7 @@ axios.interceptors.response.use((response) => {
   if (status === 401) {
     Message.error('token 失效重新登陆');
     localStorage.removeItem('eleToken');
+    router.push('/login');
   }
   return Promise.reject(error);
 });
