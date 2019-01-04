@@ -40,4 +40,8 @@ http.registerUser = (data) => {
   return axios.post('/api/users/register', data);
 };
 
+http.login = (data) => {
+  return axios.post('/api/users/login', data);
+}
+
 export default http;

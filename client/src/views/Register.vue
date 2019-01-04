@@ -1,9 +1,6 @@
 <template>
   <div class="register">
-    <div class="container">
-      <div class="tittle-wrapper">
-        <span class="title">珀西在线后台管理系统</span>
-      </div>
+    <form-container class="container" :title="title">
       <!-- 注册表单 -->
         <el-form
           :model="registerUser"
@@ -71,7 +68,7 @@
 
         </el-form>
         <!-- 注册表单结束 -->
-    </div>
+    </form-container>
   </div>
 </template>
 
@@ -81,6 +78,7 @@ import {
   validateEmail,
   validatePassword,
 } from "../util/validate.js";
+import FormContainer from '../components/FormContainer'
 export default {
   name: 'Register',
   data() {
@@ -92,6 +90,7 @@ export default {
       }
     };
     return {
+      title: '珀西在线后台管理系统',
       registerUser: {
         name: '',
         email: '',
@@ -127,6 +126,9 @@ export default {
       ],
     };
   },
+  components: {
+    FormContainer,
+  },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
@@ -136,6 +138,8 @@ export default {
             this.$message.success('注册成功');
             this.$router.push('/login');
           })
+        } else {
+          this.$message.error('表单验证未通过')
         }
       });
     },
@@ -162,16 +166,6 @@ export default {
   position: absolute;
   top: 10%;
   left: 34%;
-  padding: 25px;
-  border-radius: 5px;
-  text-align: center;
-
-}
-.container .tittle-wrapper .title {
-  font-family: "Microsoft YaHei";
-  font-weight: bold;
-  font-size: 26px;
-  color: #fff;
 }
 .register-form {
   margin-top: 20px;
