@@ -17,7 +17,12 @@ function endLoading() {
 
 // 请求拦截
 axios.interceptors.request.use((config) => {
+  const conf = config;
   startLoading();
+  if (localStorage.eleToken) {
+    // 设置统一的请求头
+    conf.headers.Authorization = localStorage.eleToken;
+  }
   return config;
 },
 (error) => {
@@ -31,6 +36,12 @@ axios.interceptors.response.use((response) => {
 (error) => {
   endLoading();
   Message.error(error.response.data.msg);
+  // 处理过期的token
+  const { status } = error.response;
+  if (status === 401) {
+    Message.error('token 失效重新登陆');
+    localStorage.removeItem('eleToken');
+  }
   return Promise.reject(error);
 });
 
