@@ -38,8 +38,19 @@ const routes = [
 ];
 
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  const isLogin = !!localStorage.eleToken;
+  if (to.path === '/login' || to.path === '/register' || isLogin) {
+    next();
+  } else {
+    next('/login');
+  }
+});
+
+export default router;
