@@ -86,7 +86,7 @@ export default {
   data() {
     const  validateConfirmPass = (rule, value, callback) => {
       if (value !== this.registerUser.password) {
-        callback(new Error('两次输入密码不一致!'));
+        callback(new Error('两次密码输入不正确'));
       } else {
         callback();
       }
@@ -131,10 +131,11 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!');
-        } else {
-          console.log('error submit!!');
-          return false;
+          this.$http.registerUser(this.registerUser)
+          .then((result) => {
+            this.$message.success('注册成功');
+            this.$router.push('/login');
+          })
         }
       });
     },
