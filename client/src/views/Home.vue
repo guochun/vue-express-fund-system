@@ -1,12 +1,14 @@
 <template>
   <div class="home">
     <head-nav :title="title" :icon="icon" :user="user"></head-nav>
+    <left-menu></left-menu>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import HeadNav from '../components/HeadNav';
+import LeftMenu from '../components/LeftMenu';
 import { mapGetters } from 'vuex';
 export default {
   name: 'Home',
@@ -23,6 +25,7 @@ export default {
   },
   components: {
     HeadNav,
+    LeftMenu,
   },
 };
 </script>

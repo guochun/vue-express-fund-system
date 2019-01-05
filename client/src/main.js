@@ -12,6 +12,10 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownItem,
+  Menu,
+  Submenu,
+  MenuItem,
+  MenuItemGroup,
 
 
 } from 'element-ui';
@@ -33,6 +37,10 @@ Vue.use(Col);
 Vue.use(Dropdown);
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
+Vue.use(Menu);
+Vue.use(MenuItem);
+Vue.use(Submenu);
+Vue.use(MenuItemGroup);
 
 Vue.prototype.$http = http;
 Vue.prototype.$message = Message;
