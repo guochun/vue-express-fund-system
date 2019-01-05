@@ -1,13 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { type } from 'os';
 
 Vue.use(Vuex);
 
 const types = {
   SET_AUTHENTICATED: 'SET_AUTHENTICATED',
   SET_USER: 'SET_USER',
-}
+};
 
 const state = {
   isAuthenticated: false,
@@ -25,7 +24,7 @@ const mutations = {
   [types.SET_USER](state, user) {
     state.user = user || {};
   }
-}
+};
 
 const actions = {
   setAuthenticated({ commit }, isAuthenticated) {
@@ -34,7 +33,11 @@ const actions = {
   setUser({ commit }, user) {
     commit(types.SET_USER, user);
   },
-}
+  clearCurrentState({ commit }) {
+    commit(types.SET_AUTHENTICATED, false);
+    commit(types.SET_USER, null);
+  },
+};
 
 export default new Vuex.Store({
   state,

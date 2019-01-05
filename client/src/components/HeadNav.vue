@@ -51,7 +51,6 @@ export default {
   methods: {
     setDialogInfo(cmditem) {
       if (!cmditem) {
-        console.log("test");
         this.$message("菜单选项缺少command属性");
         return;
       }
