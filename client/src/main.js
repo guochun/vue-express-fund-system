@@ -7,6 +7,12 @@ import {
   Option,
   Button,
   Message,
+  Row,
+  Col,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+
 
 } from 'element-ui';
 import App from './App.vue';
@@ -22,6 +28,11 @@ Vue.use(Input);
 Vue.use(Select);
 Vue.use(Option);
 Vue.use(Button);
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Dropdown);
+Vue.use(DropdownMenu);
+Vue.use(DropdownItem);
 
 Vue.prototype.$http = http;
 Vue.prototype.$message = Message;
