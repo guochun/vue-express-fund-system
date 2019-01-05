@@ -2,6 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Home from './views/Home.vue';
+import MainHome from './views/MainHome.vue';
+import InfoShow from './views/InfoShow.vue';
+
+
 import Register from './views/Register.vue';
 import Login from './views/Login.vue';
 import NotFound from './views/NotFound.vue';
@@ -11,14 +15,27 @@ Vue.use(Router);
 const routes = [
   {
     path: '/',
-    redirect: {
-      name: 'home',
-    },
+    redirect: 'index',
   },
   {
     path: '/index',
-    name: 'home',
     component: Home,
+    children: [
+      {
+        path: '/',
+        component: MainHome,
+      },
+      {
+        path: '/home',
+        name: 'mainHome',
+        component: MainHome,
+      },
+      {
+        path: '/info',
+        name: 'infoShow',
+        component: InfoShow,
+      },
+    ],
   },
   {
     path: '/register',

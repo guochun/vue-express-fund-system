@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <head-nav :title="title" :icon="icon" :user="user"></head-nav>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -27,5 +28,9 @@ export default {
 </script>
 
 <style scoped>
-
+.home {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 </style>

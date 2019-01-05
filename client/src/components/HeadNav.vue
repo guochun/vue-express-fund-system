@@ -65,7 +65,7 @@ export default {
     },
     showInfoList() {
       // 个人信息
-      this.$router.push("/infoshow");
+      this.$router.push("/info");
     },
     logout() {
       // 清除token
