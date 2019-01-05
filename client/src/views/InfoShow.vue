@@ -47,6 +47,7 @@ export default {
   text-align: center;
   position: relative;
   top: 30%;
+  left: 18%;
 }
 .user img {
   width: 150px;

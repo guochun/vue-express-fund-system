@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import MainHome from './views/MainHome.vue';
 import InfoShow from './views/InfoShow.vue';
+import FundList from './views/FundList.vue';
 
 
 import Register from './views/Register.vue';
@@ -34,6 +35,11 @@ const routes = [
         path: '/info',
         name: 'infoShow',
         component: InfoShow,
+      },
+      {
+        path: '/fund',
+        name: 'fundList',
+        component: FundList,
       },
     ],
   },

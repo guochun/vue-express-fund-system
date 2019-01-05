@@ -49,12 +49,12 @@ axios.interceptors.response.use((response) => {
 
 const http = {};
 
-http.registerUser = (data) => {
-  return axios.post('/api/users/register', data);
-};
+http.registerUser = data => axios.post('/api/users/register', data);
 
-http.login = (data) => {
-  return axios.post('/api/users/login', data);
-}
+
+http.login = data => axios.post('/api/users/login', data);
+
+
+http.getProfile = () => axios.get('/api/profiles');
 
 export default http;
