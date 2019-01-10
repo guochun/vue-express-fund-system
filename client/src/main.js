@@ -16,6 +16,8 @@ import {
   Submenu,
   MenuItem,
   MenuItemGroup,
+  Table,
+  TableColumn,
 
 
 } from 'element-ui';
@@ -41,6 +43,8 @@ Vue.use(Menu);
 Vue.use(MenuItem);
 Vue.use(Submenu);
 Vue.use(MenuItemGroup);
+Vue.use(Table);
+Vue.use(TableColumn);
 
 Vue.prototype.$http = http;
 Vue.prototype.$message = Message;

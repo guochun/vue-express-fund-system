@@ -1,8 +1,24 @@
 <template>
+  <el-table :data="tableData" style="width: 100%" v-if="tableData.length > 0" max-height=450 border>
+
+    <el-table-column prop="date" label="创建时间"  align='center' width="250"></el-table-column>
+
+    <el-table-column prop="type" label="收支类型"  align='center' width="150"></el-table-column>
+
+    <el-table-column prop="describe" label="收支描述"  align='center' width="180"></el-table-column>
+
+    <el-table-column prop="income" label="收入"  align='center' width="170"></el-table-column>
+
+    <el-table-column prop="expend" label="支出"  align='center' width="170"></el-table-column>
+
+    <el-table-column prop="cash" label="账户现金"  align='center' width="170"></el-table-column>
+
+    <el-table-column prop="remark" label="备注"  align='center' width="220"></el-table-column>
+
+  </el-table>
 </template>
 
 <script>
-
 export default {
   name: "Fundlist",
   data() {
@@ -45,11 +61,24 @@ export default {
     getProfile() {
       // 获取表格数据
       this.$http.getProfile().then(res => {
-        this.tableData = res.data;
-        this.allTableData = res.data;
-        this.filterTableData = res.data;
+        this.tableData = res.data.map((item, key) =>{
+          item.date = this.formatDate(item.date)
+          return item
+        })
+        //this.allTableData = res.data;
+        //this.filterTableData = res.data;
       });
     },
+    formatDate (str) {
+      const date = new Date(str)
+      const year = date.getFullYear()
+      const month = date.getMonth() + 1
+      const day = date.getDate()
+      const hour = date.getHours()
+      const minutes = date.getMinutes()
+      const seconds = date.getSeconds()
+      return `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`
+    }
   }
 };
 </script>

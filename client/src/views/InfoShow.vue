@@ -1,12 +1,12 @@
 <template>
     <div class="infoshow">
        <el-row type="flex" class="row-bg" justify="center">
-           <el-col :span='8'>
+           <el-col :span='8' class="left-wrapper">
                <div class="user">
                     <img :src="user.avatar" class='avatar' alt="">
                </div>
            </el-col>
-           <el-col :span='16'>
+           <el-col :span='16' class="right-wrapper">
                <div class="userinfo">
                   <div class="user-item">
                     <i class="fa fa-user"></i>
@@ -43,11 +43,16 @@ export default {
   width: 100%;
   height: 100%;
 }
+.left-wrapper {
+  min-width: 180px;
+}
+.right-wrapper {
+  min-width: 100px;
+}
 .user {
   text-align: center;
   position: relative;
   top: 30%;
-  left: 18%;
 }
 .user img {
   width: 150px;
